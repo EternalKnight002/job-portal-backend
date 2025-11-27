@@ -3,7 +3,7 @@ import express from "express";
 import cors from "cors";
 import helmet from "helmet";
 import rateLimit from "express-rate-limit";
-
+import routes from "./routes/index.js";
 import { pool } from "./db/index.js";
 
 const app = express();
@@ -12,6 +12,7 @@ const app = express();
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
+app.use("/api", routes);
 
 // Rate limit (only for auth in future)
 const limiter = rateLimit({
